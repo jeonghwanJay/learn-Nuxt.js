@@ -1,9 +1,63 @@
 <template>
-  <Tutorial />
+  <div class="app">
+    <main>
+        <input type="text">
+        <ul>
+        <li class="item flex" v-for="product in products" :key="product.id">
+            <p>{{product.name}}</p>
+            <img class="product-image" :src="product.imageUrl" :alt="product.name">
+            <span>{{product.price}}</span>
+        </li>
+    </ul>
+    </main>
+  </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'IndexPage',
+    async asyncData() {
+        const response = await axios.get('http://localhost:3000/products');
+        console.log(response.data);
+        const products = response.data.map((item) => ({
+            ...item,
+            imageUrl:`${item.imageUrl}?random=${Math.random()}`
+        }))
+        return {products}
+    },
 }
 </script>
+
+<style scoped>
+.flex {
+  display: flex;
+  justify-content: center;
+}
+.item {
+  display: inline-block;
+  width: 400px;
+  height: 300px;
+  text-align: center;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+.product-image {
+  width: 400px;
+  height: 250px;
+}
+.app {
+  position: relative;
+}
+.cart-wrapper {
+  position: sticky;
+  float: right;
+  bottom: 50px;
+  right: 50px;
+}
+.cart-wrapper .btn {
+  display: inline-block;
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+</style>
