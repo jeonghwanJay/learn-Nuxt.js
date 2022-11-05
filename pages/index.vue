@@ -3,9 +3,9 @@
     <main>
         <input type="text">
         <ul>
-        <li class="item flex" v-for="product in products" :key="product.id">
+        <li  v-for="product in products" :key="product.id" class="item flex">
             <p>{{product.name}}</p>
-            <img class="product-image" :src="product.imageUrl" :alt="product.name">
+            <img class="product-image" :src="product.imageUrl" :alt="product.name" @click="moveToDetailPage(product.id)">
             <span>{{product.price}}</span>
         </li>
     </ul>
@@ -25,6 +25,11 @@ export default {
         }))
         return {products}
     },
+    methods: {
+        moveToDetailPage(id) {
+            this.$router.push(`detail/${id}`)
+        }
+    }
 }
 </script>
 

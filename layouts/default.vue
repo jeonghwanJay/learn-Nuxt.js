@@ -1,6 +1,8 @@
 <template>
 <div>
-  <NuxtLink to='/main'>Main Page</NuxtLink>
+  <header>
+    <NuxtLink to="/">Nuxt Shopping</NuxtLink>
+  </header>
   <Nuxt />
 </div>
   
