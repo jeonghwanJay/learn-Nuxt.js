@@ -11,7 +11,7 @@
       <div class="side-panel">
         <p class="name">{{ product.name }}</p>
         <p class="price">{{ product.price }}</p>
-        <!-- <button type="button" @click="addToCart">Add to Cart</button> -->
+        <button type="button" @click="addToCart">Add to Cart</button>
       </div>
     </div>
   </div>
@@ -25,6 +25,11 @@ export default {
     // console.log(response);
     const product = response.data
     return {product}
+  },
+  methods: {
+    addToCart() {
+      this.$router.push('/cart')
+    }
   }
 }
 </script>

@@ -6,11 +6,14 @@
         <SearchInput v-model="searchKeyword" @search="searchProducts"></SearchInput>
         <ul>
         <li  v-for="product in products" :key="product.id" class="item flex">
-            <p>{{product.name}}</p>
             <img class="product-image" :src="product.imageUrl" :alt="product.name" @click="moveToDetailPage(product.id)">
+            <p>{{product.name}}</p>
             <span>{{product.price}}</span>
         </li>
     </ul>
+    <div class="cart-wrapper">
+      <button class="btn" @click="moveToCartPage">장바구니 담기</button>
+    </div>
     </main>
   </div>
 </template>
@@ -49,6 +52,9 @@ export default {
             ...item,
             imageUrl:`${item.imageUrl}?random=${Math.random()}`
         }))
+        },
+        moveToCartPage() {
+          this.$router.push('/cart')
         }
     },
 
