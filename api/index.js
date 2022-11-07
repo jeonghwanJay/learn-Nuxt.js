@@ -13,5 +13,12 @@ function fetchProductsBySearch(keyword) {
         name_like : keyword
     }}) 
 }
+function createCartItem(cartItem) {
+    return instance.post('/carts', cartItem )
+}
 
-export { fetchProductById, fetchProductsBySearch}
+function fetchCartItems() {
+    return instance.get('/carts')
+}
+
+export { fetchProductById, fetchProductsBySearch, createCartItem, fetchCartItems}
