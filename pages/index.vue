@@ -19,16 +19,15 @@
 </template>
 
 <script>
-import axios from 'axios'
 import SearchInput from '../components/SearchInput.vue'
-import {fetchProductsBySearch} from '../api/index'
+import {fetchProductsBySearch, fetchProducts} from '../api/index'
 export default {
   components: {
     SearchInput,
   },
   
     async asyncData() {
-        const response = await axios.get('http://localhost:3000/products');
+        const response = await fetchProducts();
         console.log(response.data);
         const products = response.data.map((item) => ({
             ...item,
